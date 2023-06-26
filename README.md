@@ -66,8 +66,8 @@ code .
 ```
 mkdir mynewfolder
 cd mynewfolder
-python3 -m venv mynewvenv
-source mynewvenv/bin/activate
+python3 -m venv venv
+source venv/bin/activate
 python
 ```
 

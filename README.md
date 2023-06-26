@@ -62,6 +62,7 @@ code .
 ```
 
 - Make a new directory to work in and create a virtual environment:
+    (at this point I usually open a terminal inside VSCode, so I don't have so many windows)
 ```
 mkdir mynewfolder
 cd mynewfolder

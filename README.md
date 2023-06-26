@@ -46,11 +46,27 @@ sudo apt-get upgrade python3
 sudo apt-get install python3-venv
 ```
 
+- Install an IDE of your choice (I prefer VSCode):
+    - first download the [VSCode .deb package](https://go.microsoft.com/fwlink/?LinkID=760868) (64-bit) and replace `<file>` in the first command below with the path:
+
+```
+sudo apt install ./<file>.deb
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code
+```
+
+- Open VSCode:
+```
+code .
+```
+
 - Make a new directory to work in and create a virtual environment:
 ```
 mkdir mynewfolder
 cd mynewfolder
-python3 -m venv venv3
-source venv3/bin/activate
+python3 -m venv mynewvenv
+source mynewvenv/bin/activate
 python
 ```
+

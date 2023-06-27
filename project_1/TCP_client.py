@@ -7,8 +7,8 @@
 
 import socket
 
-target_host = "www.google.com"
-target_port = 80
+target_host = "0.0.0.0"
+target_port = 9998
 
 
 # create a socket object and connect the client

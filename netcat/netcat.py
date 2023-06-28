@@ -40,6 +40,35 @@ class NetCat:
         try:
             while True:
                 recv_len = 1
+                response = ''
+                while recv_len:
+                    data = self.socket.recv(4096)
+                    recv_len = len(data)
+                    response += data.decode()
+                    if recv_len < 4096:
+                        break
+
+                if response:
+                    print(response)
+                    buffer = input('> ')
+                    buffer += '\n'
+                    self.socket.send(buffer.encode())
+
+        except KeyboardInterrupt:
+            print('User terminated')
+            self.socket.close()
+            sys.exit()
+
+    def listen(self):
+        self.socket.bind((self.args.target, self.args.port))
+        self.socket.listen(5)
+
+        while True:
+            client_socket, _ = self.socket.accept()
+            client_thread = threading.Thread(
+                target=self.handle, args=(client_socket,)
+            )
+            client_thread.start()
 
 
 if __name__ == '__main__':

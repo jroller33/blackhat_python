@@ -1,10 +1,25 @@
 # Black Hat Hacking with Python
+  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+
+## Table of Contents
+- [Description](#description)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Contribution](#contribution)
+- [License](#license)
+- [Contact](#contact)
+
+## Description
+
+I've been using Python for a while, but now I'm learning how to it for pen testing and hacking. Each folder in this repo is a separate project that covers a certain topic, and each folder has its own virtual environment.
 
 ## Setup
 
 This requires Kali Linux running inside a virtual machine. You'll need a hypervisor virtualization client also (like VMware, VirtualBox or Hyper-V).
 <br />
-On my computer (Windows 11 x64, v10.0.22621) I followed these steps to setup the VM and Kali Linux:
+On my computer (Windows 11 x64, v10.0.2) I followed these steps to setup the VM and Kali Linux:
 
 
 - Make sure Virtualization is ENABLED in your system BIOS/UEFI.
@@ -17,7 +32,7 @@ On my computer (Windows 11 x64, v10.0.22621) I followed these steps to setup the
 
 - Follow these steps to create the VM: [Kali VMware Docs](https://www.kali.org/docs/virtualization/install-vmware-guest-vm/)
 
-- Follow these steps (inside the VM) to complete installation: [Kali Installation](https://www.kali.org/docs/installation/hard-disk-install/)
+- Follow these steps (inside the VM) to complete Setup: [Kali Setup](https://www.kali.org/docs/Setup/hard-disk-install/)
 
 - Now you should have a virtual machine with Kali Linux installed!
 
@@ -70,4 +85,34 @@ python3 -m venv venv
 source venv/bin/activate
 python
 ```
+
+## Usage
+
+## Screenshots
+### Node.js Console Application:
+0
+![Console](./main/screenshotConsole.png)
+<br/>
+
+
+## Sample README Link
+[Sample README](https://github.com/jroller33/README-Generator/blob/main/main/sampleREADME.md)
+
+## Contribution
+You can contribute at https://github.com/jroller33/README-Generator
+
+## License
+This project is licensed under the MIT License. <br/>
+https://www.mit.edu/~amini/LICENSE.md
+
+## Contact
+GitHub: https://github.com/jroller33
+
+
+
+
+
+
+
+
 

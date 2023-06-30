@@ -7,7 +7,7 @@
 ![Kali](./files/kali-wp.webp)
 <br/>
 ## Contents
-- [Description](#description)
+- [Overview](#overview)
 - [Setup](#setup)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
@@ -15,13 +15,13 @@
 - [License](#license)
 - [Contact](#contact)
 
-## Description
+## Overview
 
 I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project with its own virtual environment.
 
 ## Setup
 
-This requires Kali Linux running inside a virtual machine. You'll also need a hypervisor virtualization client (like VMware, VirtualBox or Hyper-V).
+This requires [Kali Linux](https://www.kali.org/) running inside a virtual machine. You'll also need a hypervisor virtualization client (like [VMware](https://www.vmware.com/), [VirtualBox](https://www.virtualbox.org/) or [Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/)).
 <br />
 On my computer (Windows 11 x64, v10.0.2) I followed these steps to setup the VM and Kali Linux:
 

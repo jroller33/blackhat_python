@@ -1,8 +1,12 @@
 # Black Hat Hacking with Python
-  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
-## Table of Contents
+  
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+![Kali](./files/kali-wp.webp)
+<br/>
+## Contents
 - [Description](#description)
 - [Setup](#setup)
 - [Usage](#usage)
@@ -13,11 +17,11 @@
 
 ## Description
 
-I've been using Python for a while, but now I'm learning how to it for pen testing and hacking. Each folder in this repo is a separate project that covers a certain topic, and each folder has its own virtual environment.
+I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project that covers a certain topic, and each folder has its own virtual environment.
 
 ## Setup
 
-This requires Kali Linux running inside a virtual machine. You'll need a hypervisor virtualization client also (like VMware, VirtualBox or Hyper-V).
+This requires Kali Linux running inside a virtual machine. You'll also need a hypervisor virtualization client (like VMware, VirtualBox or Hyper-V).
 <br />
 On my computer (Windows 11 x64, v10.0.2) I followed these steps to setup the VM and Kali Linux:
 
@@ -62,7 +66,7 @@ sudo apt-get install python3-venv
 ```
 
 - Install an IDE of your choice (I prefer VSCode):
-    - first download the [VSCode .deb package](https://go.microsoft.com/fwlink/?LinkID=760868) (64-bit) and replace `<file>` in the first command below with the path:
+    - first download the [VSCode .deb package](https://go.microsoft.com/fwlink/?LinkID=760868) (64-bit) and replace `<file>` in the first command below with the path of the .deb package:
 
 ```
 sudo apt install ./<file>.deb
@@ -89,14 +93,10 @@ python
 ## Usage
 
 ## Screenshots
-### Node.js Console Application:
-0
-![Console](./main/screenshotConsole.png)
-<br/>
+### John's Netcat:
 
-
-## Sample README Link
-[Sample README](https://github.com/jroller33/README-Generator/blob/main/main/sampleREADME.md)
+<!-- ![Console](./main/screenshotConsole.png)
+<br/> -->
 
 ## Contribution
 You can contribute at https://github.com/jroller33/README-Generator
@@ -107,12 +107,4 @@ https://www.mit.edu/~amini/LICENSE.md
 
 ## Contact
 GitHub: https://github.com/jroller33
-
-
-
-
-
-
-
-
 

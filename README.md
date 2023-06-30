@@ -17,7 +17,7 @@
 
 ## Description
 
-I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project that covers a certain topic, and each folder has its own virtual environment.
+I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project with its own virtual environment.
 
 ## Setup
 

@@ -95,8 +95,8 @@ python
 ## Screenshots
 ### John's Netcat:
 
-<!-- ![Console](./main/screenshotConsole.png)
-<br/> -->
+![Netcat](./files/screenshot)
+<br/>
 
 ## Contribution
 You can contribute at https://github.com/jroller33/README-Generator

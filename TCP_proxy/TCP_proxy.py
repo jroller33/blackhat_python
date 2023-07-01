@@ -48,7 +48,7 @@ def receive_from(connection): # for receiving local and remote data, pass in the
     connection.settimeout(10)      # 10 second timeout. For proxying traffic to other countries or over subpar networks, set the timeout longer
     try:
         while True:
-            data = connection.recv(4096)    # reads response data into the buffer, until there's no more data or reach timeout
+            data = connection.recv(4096)    # reads response data into the buffer, until there's no more data or it reaches timeout
             if not data:
                 break
             buffer += data
@@ -56,3 +56,12 @@ def receive_from(connection): # for receiving local and remote data, pass in the
     except Exception as e:
         pass
     return buffer   # return 'buffer' byte string to the caller (could be local or remote machine)
+
+def request_handler(buffer):
+# TODO: modify request packets before proxy sends them
+    return buffer
+
+def response_handler(buffer):
+# TODO: modify response packets before proxy sends them
+    return buffer
+

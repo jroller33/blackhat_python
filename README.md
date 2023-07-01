@@ -1,8 +1,7 @@
-# Black Hat Hacking with Python
+# Hacking with Python
 
 
   
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ![Kali](./files/kali-wp.webp)
 <br/>
@@ -16,6 +15,7 @@
 - [Contact](#contact)
 
 ## Overview
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project with its own virtual environment.
 

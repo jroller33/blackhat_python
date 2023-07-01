@@ -1,4 +1,4 @@
-# Hacking with Python
+# Hacking with Python and Kali Linux
 
 
   

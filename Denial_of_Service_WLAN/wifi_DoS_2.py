@@ -21,3 +21,20 @@ def check_for_essid(essid, list):
             check_status = False
 
     return check_status
+
+
+# sudo mode is required to run this script
+if not 'SUDO_UID' in os.environ.keys():
+    print("You must run this script in sudo mode")
+    exit()
+
+
+# backup all .csv files in the directory
+for file_name in os.listdir():
+
+    if ".csv" in file_name:
+        print("You have .csv files in your directory. Backing them up now")
+
+        directory = os.getcwd()
+
+        

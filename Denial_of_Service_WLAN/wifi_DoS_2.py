@@ -58,3 +58,18 @@ wlan_regex = re.compile("^wlan[0-9]+")
 # iwconfig command looks for wireless interfaces
 
 check_wifi_result = wlan_regex.findall(subprocess.run(["iwconfig"], capture_output=True).stdout.decode())
+
+
+# if there's no wifi adapter
+
+# menu to select wifi
+
+# check if selected wifi is valid
+
+# kill any conflicting wifi processes
+
+# main loop
+
+# change wireless channel for the attack
+
+# deauthenticate clients

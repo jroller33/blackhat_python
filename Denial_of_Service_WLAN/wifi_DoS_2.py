@@ -33,8 +33,21 @@ if not 'SUDO_UID' in os.environ.keys():
 for file_name in os.listdir():
 
     if ".csv" in file_name:
+
+        # each time this script runs the .csv files will get deleted. There should only be one .csv file in the directory
         print("You have .csv files in your directory. Backing them up now")
 
-        directory = os.getcwd()
 
-        
+        directory = os.getcwd()         # get the current working directory
+
+        try:                            # make a new backup folder
+            os.mkdir(directory + "/backup/")
+        except:
+            print("The backup folder already exists")
+
+        timestamp = datetime.now()
+
+        shutil.move(file_name, directory + "/backup/" + str(timestamp) + "-" + file_name)
+
+
+# use regex to find all wireless interfaces (if they're wlan0 or higher)

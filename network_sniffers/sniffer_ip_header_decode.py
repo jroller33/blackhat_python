@@ -1,7 +1,7 @@
 import ipaddress
 import os
 import socket
-import struct
+import struct   # this module lets you read and parse binary data
 import sys
 
 

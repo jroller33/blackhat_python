@@ -1,7 +1,8 @@
 # sniffer's main purpose is to discover hosts on a target network
 # it needs to work on Windows and Linux, even though the process of accessing raw sockets is different on Windows and Linux
 
-# in this basic example, there's a raw socket sniffer that reads a single packet and then quits
+# in this basic example, there's a raw socket sniffer that reads a single packet and then quits.
+# packet isn't decoded at all. It prints the raw packet
 
 import socket
 import os

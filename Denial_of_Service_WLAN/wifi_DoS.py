@@ -95,3 +95,14 @@ user_choice = check_wifi_result[int(wifi_interface_choice)]
 print("The wifi adapter is connected, now ending conflicting processes:")
 
 kill_conflict_processes = subprocess.run(["sudo", "airmon-ng", "check", "kill"])
+
+# put in monitor mode
+print("putting wifi adapter in monitor mode:")
+put_in_monitor_mode = subprocess.run(["sudo", "airmon-ng", "start", user_choice])
+
+
+# .Popen() runs a command and the output is a file that can be accessed by other programs
+
+discover_access_points = subprocess.Popen(["sudo", "airodump-ng","-w" ,"file","--write-interval", "1","--output-format", "csv", user_choice + "mon"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+

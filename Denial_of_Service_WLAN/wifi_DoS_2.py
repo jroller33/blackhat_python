@@ -51,3 +51,10 @@ for file_name in os.listdir():
 
 
 # use regex to find all wireless interfaces (if they're wlan0 or higher)
+wlan_regex = re.compile("^wlan[0-9]+")
+
+# this subprocess module lets you run sys commands in Kali.
+# create a child process (this script is the parent process). Parent will only continue once the child is finished
+# iwconfig command looks for wireless interfaces
+
+check_wifi_result = wlan_regex.findall(subprocess.run(["iwconfig"], capture_output=True).stdout.decode())

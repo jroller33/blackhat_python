@@ -129,10 +129,30 @@ while run_last:
     network_adapters = subprocess.run(["wmic", "nic", "get", "name, index"], capture_output=True).stdout.decode('utf-8', errors="ignore").split('\r\r\n')
 
     for adapter in network_adapters:
+
+        # get index for each adapter
         adapter_index_find = adapter_index.search(adapter.lstrip())
 
+        # if there's an index and the adapter is wireless, disable and enable it
         if adapter_index_find and "Wireless" in adapter:
             disable = subprocess.run(["wmic", "path", "win32_networkadapter", "where", f"index={adapter_index_find.group(0)}", "call", "enable"], capture_output=True)
 
+            # if return code is 0, adapter was disabled successfully
             if (enable.returncode == 0):
                 print(f"Enabled {adapter.lstrip()}")
+
+            # enable network adapter again
+            enable = subprocess.run(["wmic", "path", f"win32_networkadapter", "where", f"index={adapter_index_find.group(0)}", "call", "enable"], capture_output=True)
+
+            if (enable.returncode == 0):
+                print(f"Enabled {adapter.lstrip()}")
+
+    getmac_output = subprocess.run("getmac", capture_output=True).stdout.decode()
+
+    # recreate the mac addr as in getmac XX-XX-XX-XX-XX-XX from the 12 char string. split the string into 2 char long strings, then use "-".join(list) to recreate address
+    mac_add = "-".join([(new_mac_addr[int(update_option)][i:i+2]) for i in range(0, len(new_mac_addr[int(update_option)]), 2)])
+
+    if mac_add in getmac_output:
+        print("MAC address success")
+
+    break

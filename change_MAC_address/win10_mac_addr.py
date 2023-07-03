@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-# *** must be run with admin privileges, and wifi adapter must be connected to a network ***
-
+'''
+*** this script doesn't need Kali Linux. It's meant to be run on Windows 10, to change the machine's MAC address ***
+*** it must be run with admin privileges on Win 10, and the wifi adapter must be connected to a network ***
+'''
 
 import winreg       # Windows Registry access
 import subprocess   # used to run sys commands as a child process of the parent process
@@ -72,3 +74,41 @@ while True:
         else:
             print("Invalid selection. Try again")
 
+# this is the first part of the key. append the folders where you search for the values
+controller_key_part = r"SYSTEM\ControlSet001\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}"
+
+# connect to HKEY_LOCAL_MACHINE registry. If 'None', connect to local machine's registry
+with winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE) as hkey:
+    # create a list for the 21 folders
+    controller_key_folders = [("\\000" + str(item) if item < 10 else "\\00" + str(item)) for item in range(0, 21)]
+
+    for key_folder in controller_key_folders:
+
+        try:
+
+            with winreg.OpenKey(hkey, controller_key_part + key_folder, 0, winreg.KEY_ALL_ACCESS) as regkey:
+
+                try:
+
+                    count = 0
+                    while True:
+
+                        name, value, type = winreg.EnumValue(regkey, count)
+
+                        count = count + 1
+
+                        if name == "NetCfgInstanceId" and value == mac_addresses[int(user_option)][1]:
+                            new_mac_addr = mac_to_change_to[int(update_option)]
+                            winreg.SetValueEx(regkey, "NetworkAddress", 0, winreg.REG_SZ, new_mac_addr)
+                            print("Matched transport number successfully")
+
+
+                        # get adapter list and find index of the adapter to disable
+                        break
+
+                except WindowsError:
+                    pass
+
+        except:
+            pass
+        

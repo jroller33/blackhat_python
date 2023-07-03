@@ -17,7 +17,7 @@
 ## Overview
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project. Some scripts require a Kali VM, others are meant to run on Windows or any Linux OS. Some also require an external wireless adapter (like Denial_of_Service_WLAN/).
+I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project (don't try to run this entire repo at once). Some scripts require a Kali VM, others are meant to run on Windows or any Linux OS. Some also require an external wireless adapter (like [Denial_of_Service_WLAN/](./Denial_of_Service_WLAN/)).
 
 ## Setup
 
@@ -91,12 +91,17 @@ python
 ```
 
 ## Usage
-
+Usage instructions are at the beginning of each script. Some scripts may need to be modified before running, depending on what you're trying to do.
 ## Screenshots
-### John's Netcat:
+### Change MAC address on a Linux machine:
+![MAC Address Changed](./change_MAC_address/screenshot.jpeg)
 
+<br />
+
+### John's Netcat:
 ![Netcat](./files/screenshot)
-<br/>
+
+<br />
 
 ## Contribution
 You can contribute at https://github.com/jroller33/blackhat_python

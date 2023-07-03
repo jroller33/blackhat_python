@@ -125,5 +125,14 @@ else:
 
 while run_last:
 
+    # get a list of all network adapters. HAVE TO IGNORE ERRORS. It doesn't like the format of the data from the command running
+    network_adapters = subprocess.run(["wmic", "nic", "get", "name, index"], capture_output=True).stdout.decode('utf-8', errors="ignore").split('\r\r\n')
 
-    network_adapters = subprocess.run
+    for adapter in network_adapters:
+        adapter_index_find = adapter_index.search(adapter.lstrip())
+
+        if adapter_index_find and "Wireless" in adapter:
+            disable = subprocess.run(["wmic", "path", "win32_networkadapter", "where", f"index={adapter_index_find.group(0)}", "call", "enable"], capture_output=True)
+
+            if (enable.returncode == 0):
+                print(f"Enabled {adapter.lstrip()}")

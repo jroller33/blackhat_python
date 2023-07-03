@@ -17,10 +17,24 @@ new_mac_addr = ["0A1122334455", "OE1122334455", "021122334455", "061122334455"]
 mac_addresses = list()
 
 # regex for for MAC addresses
-macAddRegex = re.compile(r"([A-Za-z0-9]{2}[:-]){5}([A-Za-z0-9]{2})")
+mac_addr_regex = re.compile(r"([A-Za-z0-9]{2}[:-]){5}([A-Za-z0-9]{2})")
 
 # regex for transport names. This works for now, but be careful using .+ or .*
-transportName = re.compile("({.+})")
+transport_name = re.compile("({.+})")
 
 # regex to get adapter index
-adapterIndex = re.compile("([0-9]+)")
+adapter_index = re.compile("([0-9]+)")
+
+
+'''
+subprocess.run(<command line arguments>)
+output is stored in 'stdout' in bytes. decode it to unicode before using it as a string
+run 'getmac' command and capture output. split the output so you can work with each line
+'''
+getmac_output = subprocess.run("getmac", capture_output=True).stdout.decode().split('\n')
+
+
+# loop thru output
+for mac_addr in getmac_output:
+    
+    mac_find = mac_addr_regex.search(mac_addr)

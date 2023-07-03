@@ -3,10 +3,19 @@ import string
 import random
 import re
 import argparse
-# you can either change to a random mac addr, or a specific one
 
-# three parameters you must pass to use this script:
-# 'interface':
+
+# THREE PARAMETERS TO RUN THIS SCRIPT:
+# ------------------------------------
+# 'interface': network interface name you want to change the MAC address (get it using 'ifconfig' or 'ip' commands in linux)
+
+# '-r' or '--random': means you want your new MAC address to be random (don't use with -m)
+
+# '-m' or '--mac': means you want to change to a specific mac address (don't use with -r)
+
+# Example usage in a linux terminal: >>>$ python linux_mac_addr.py wlan0 -r
+# this runs the script, changing the mac address of 'wlan0' to a new random mac address
+# ------------------------------------
 
 
 def get_random_mac_address():
@@ -47,8 +56,8 @@ def change_mac_address(iface, new_mac_address):
     subprocess.check_output(f"ifconfig {iface} up", shell=True)
 
 
+# main menu
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(description="Change Linux MAC address")
     parser.add_argument("interface", help="Network interface name on Linux")
     parser.add_argument("-r", "--random", action="store_true", help="Do you want to generate a random MAC address?")

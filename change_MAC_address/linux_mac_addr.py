@@ -7,13 +7,15 @@ import argparse
 
 # THREE PARAMETERS TO RUN THIS SCRIPT:
 # ------------------------------------
-# 'interface': network interface name you want to change the MAC address (get it using 'ifconfig' or 'ip' commands in linux)
+# 'interface': network interface name you want to change the MAC address (get it using 'ifconfig -a' or 'ip addr' commands in linux)
 
 # '-r' or '--random': means you want your new MAC address to be random (don't use with -m)
 
 # '-m' or '--mac': means you want to change to a specific mac address (don't use with -r)
 
-# Example usage in a linux terminal: >>>$ python linux_mac_addr.py wlan0 -r
+# MUST BE RUN IN 'SUDO' MODE
+
+# Example usage in a linux terminal: >>>$ sudo python linux_mac_addr.py wlan0 -r
 # this runs the script, changing the mac address of 'wlan0' to a new random mac address
 # ------------------------------------
 

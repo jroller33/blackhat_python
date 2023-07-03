@@ -34,7 +34,41 @@ run 'getmac' command and capture output. split the output so you can work with e
 getmac_output = subprocess.run("getmac", capture_output=True).stdout.decode().split('\n')
 
 
-# loop thru output
-for mac_addr in getmac_output:
+
+for mac_addr in getmac_output:                 # loop thru output
     
-    mac_find = mac_addr_regex.search(mac_addr)
+    mac_find = mac_addr_regex.search(mac_addr)  # use regex to find mac addresses
+
+    transport_find = transport_name.search(mac_addr)    # use regex to find transport name
+
+    if mac_find == None or transport_find == None:      # if one of them isn't found, option won't be listed
+        continue
+
+    mac_addresses.append((mac_find.group(0), transport_find.group(0)))  # append a tuple with mac addr and transport name to list
+
+
+# menu to choose mac addr
+print("Which MAC address do you want to update?")
+for index, item in enumerate(mac_addresses):
+    print(f"{index} - MAC address: {item[0]} - Transport Name: {item[1]}")
+
+# user selects the mac addr they want to change 
+user_option = input("Select a menu number for the MAC address you want to change:")
+
+# menu so the user can pick a new mac addr
+while True:
+    print("Which MAC address do you want to use? This changes the network card's MAC address")
+    for index, item in enumerate(new_mac_addr):
+        print(f"{index} = MAC address: {item}")
+
+        # user selects their new mac addr
+        update_option = input("Select the menu number for your new MAC address:")
+
+
+        # validate user input
+        if int(update_option) >= 0 and int(update_option) < len(new_mac_addr):
+            print(f"Your MAC address will be changed to: {new_mac_addr[int(update_option)]}")
+            break
+        else:
+            print("Invalid selection. Try again")
+

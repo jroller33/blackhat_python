@@ -85,18 +85,21 @@ with winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE) as hkey:
     for key_folder in controller_key_folders:
 
         try:
-
+            # specify the registry we connected to, the controller key (controller_key_part and folder(key) name made with list comprehension)
             with winreg.OpenKey(hkey, controller_key_part + key_folder, 0, winreg.KEY_ALL_ACCESS) as regkey:
-
+                
+                # look at values under each key and try to find "NetCfgInstanceId" with the same transport ID as the user selection
                 try:
-
+                    # values in registry start at 0. Continues until WindowsError, then it starts with the next folder until the correct key is found with the correct value
                     count = 0
                     while True:
 
+                        # unpacks each winreg value into name value and type
                         name, value, type = winreg.EnumValue(regkey, count)
 
                         count = count + 1
 
+                        # check if "NetCfgInstanceId" is equal to transport number for selected mac addr
                         if name == "NetCfgInstanceId" and value == mac_addresses[int(user_option)][1]:
                             new_mac_addr = mac_to_change_to[int(update_option)]
                             winreg.SetValueEx(regkey, "NetworkAddress", 0, winreg.REG_SZ, new_mac_addr)
@@ -121,3 +124,6 @@ else:
     run_last = False
 
 while run_last:
+
+
+    network_adapters = subprocess.run

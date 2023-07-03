@@ -111,4 +111,13 @@ with winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE) as hkey:
 
         except:
             pass
-        
+
+# disable and enable wireless devices
+run_disable_enable = input("Do you want to disable and reenable wireless devices? Type Y to continue:")
+
+if run_disable_enable.lower() == 'y':
+    run_last = True
+else:
+    run_last = False
+
+while run_last:

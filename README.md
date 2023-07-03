@@ -17,11 +17,11 @@
 ## Overview
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project.
+I've been using Python for a while, but now I'm learning how to use it for pen testing and hacking. Each folder in this repo is a separate project. Some scripts require a Kali VM, others are meant to run on Windows or any Linux OS. Some also require an external wireless adapter (like Denial_of_Service_WLAN/).
 
 ## Setup
 
-This requires [Kali Linux](https://www.kali.org/) running inside a virtual machine. You'll also need a hypervisor virtualization client (like [VMware](https://www.vmware.com/), [VirtualBox](https://www.virtualbox.org/) or [Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/)).
+Most of these projects require [Kali Linux](https://www.kali.org/) running inside a virtual machine. You'll also need a hypervisor virtualization client (like [VMware](https://www.vmware.com/), [VirtualBox](https://www.virtualbox.org/) or [Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/)).
 <br />
 On my computer (Windows 11 x64, v10.0.2) I followed these steps to setup the VM and Kali Linux:
 

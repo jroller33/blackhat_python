@@ -91,3 +91,15 @@ def decrypt(filename, key):
         file.write(decrypted_data)
 
 
+# recursive function. if it's a folder, encrypt the whole folder (all containing files)
+def encrypt_folder(foldername, key):
+
+    # 'glob()' from pathlib's 'Path' class gets all the subfolders and files in a folder. Better than 'os.scandir()' because glob returns Path objects, not strings
+    for child in pathlib.Path(foldername).glob("*"):
+
+        if child.is_file():         # if the child of the folder is a file, encrypt the file
+            print(f"[*] Encrypting {child}")
+            encrypt(child, key)     # encrypt() from earlier
+
+        elif child.is_dir():       # if the child of the folder is another folder, recursively call this function again, but pass the 'child' path where 'foldername' is 
+            encrypt_folder(child, key)

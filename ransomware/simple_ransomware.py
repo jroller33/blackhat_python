@@ -49,7 +49,7 @@ def generate_key(password, salt_size=16, load_existing_salt=False, save_salt=Tru
     # generate new salt and save it
     elif save_salt:
         salt = generate_salt(salt_size)
-        with open("salt.salt", "wb") as salt_file:
+        with open("salt.salt", "wb") as salt_file:      # open(filename, write binary)
             salt_file.write(salt)
     
     # generate the key from the salt and the password
@@ -59,14 +59,35 @@ def generate_key(password, salt_size=16, load_existing_salt=False, save_salt=Tru
     return base64.urlsafe_b64encode(derived_key)
 
 
+# given a filename (str) and key (bytes), encrypt the file's data and overwrite it
 def encrypt(filename, key):
 
     f = Fernet(key)     # make Fernet object with the key
     
-    with open(filename, "rb") as file:  # read the data of the file that'll be encrypted
+    with open(filename, "rb") as file:  # read the data of the file that'll be encrypted. open(filename, read binary)
         file_data = file.read()
 
-    encrypted_data = f.encrypt(file_data)   # 'encrypt' method from Fernet
+    encrypted_data = f.encrypt(file_data)   # encrypt data with 'encrypt' method from Fernet
 
-    with open(filename, "wb") as file:      # take encrypted_data and and overwrite the original file
+    with open(filename, "wb") as file:      # take encrypted_data and and overwrite the original file. open(filename, write binary)
         file.write(encrypted_data)
+
+
+# given a filename (str) and key (bytes), decrypt the file's encrypted data and overwrite it
+def decrypt(filename, key):
+    f = Fernet(key)
+
+    with open(filename, "rb") as file:  # read encrypted data
+        encrypted_data = file.read()
+
+    try:                                # decrypt data with 'decrypt' method from Fernet
+        decrypted_data = f.decrypt(encrypted_data)
+
+    except cryptography.fernet.InvalidToken:    # ERROR (password incorrect, or it might be a weird error)
+        print("[!] Invalid token. Password is probably incorrect.")
+        return
+
+    with open(filename, "wb") as file:      # take decrypted_data and overwrite the encrypted file
+        file.write(decrypted_data)
+
+

@@ -131,4 +131,37 @@ if __name__ == "__main__":
     if args.encrypt:
         password = getpass.getpass("Enter the password to encrypt: ")
 
-    
+    elif args.decrypt:
+        password = getpass.getpass("Enter the password to decrypt: ")
+
+    # generate the key
+    if args.salt_size:
+        key = generate_key(password, salt_size=args.salt_size, save_salt=True)
+
+    else:
+        key = generate_key(password, load_existing_salt=True)
+
+    # get encrypt and decrypt flags
+    encrypt_ = args.encrypt
+    decrypt_ = args.decrypt
+
+    # check if encrypt and decrypt are both specified (not allowed)
+    if encrypt_ and decrypt_:
+        raise TypeError("Can only encrypt OR decrypt the file.")
+
+    elif encrypt_:  # check if it's a file or folder and encrypt it
+        if os.path.isfile(args.path):
+            encrypt(args.path, key)
+
+        elif os.path.isdir(args.path):
+            encrypt_folder(args.path, key)
+
+    elif decrypt_:  # check if it's a file or folder and decrypt it
+        if os.path.isfile(args.path):
+            decrypt(args.path, key)
+
+        elif os.path.isdir(args.path):
+            decrypt_folder(args.path, key)
+
+    else:
+        raise TypeError("Check your arguments. You can only encrypt OR decrypt the file.")

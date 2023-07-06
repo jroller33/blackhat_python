@@ -4,6 +4,8 @@ import os
 import base64
 import getpass
 import cryptography
+import argparse     # used for making a CLI menu
+
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 
@@ -91,7 +93,7 @@ def decrypt(filename, key):
         file.write(decrypted_data)
 
 
-# recursive function. if it's a folder, encrypt the whole folder (all containing files)
+# recursive function. if it's a folder, encrypt the whole folder (all files)
 def encrypt_folder(foldername, key):
 
     # 'glob()' from pathlib's 'Path' class gets all the subfolders and files in a folder. Better than 'os.scandir()' because glob returns Path objects, not strings
@@ -103,3 +105,19 @@ def encrypt_folder(foldername, key):
 
         elif child.is_dir():       # if the child of the folder is another folder, recursively call this function again, but pass the 'child' path where 'foldername' is 
             encrypt_folder(child, key)
+
+
+# recursive function. if it's a folder, decrypt the whole folder (all files)
+def decrypt_folder(foldername, key):
+    for child in pathlib.Path(foldername).glob("*"):
+
+        if child.is_file():     # if the child is a file, decrypt it
+            print(f"[*] Decrypting {child}")
+            decrypt(child, key) # decrypt() from earlier
+
+        elif child.is_dir():     # if the child is another folder, recursively call this function again, but pass 'child' path into 'foldername'
+            decrypt_folder(child, key)
+
+
+if __name__ == "__main__":
+    parser = argparse.A

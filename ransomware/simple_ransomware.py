@@ -57,3 +57,5 @@ def generate_key(password, salt_size=16, load_existing_salt=False, save_salt=Tru
     
     # encode the key with Base 64 and return it
     return base64.urlsafe_b64encode(derived_key)
+
+

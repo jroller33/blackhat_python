@@ -59,3 +59,14 @@ def generate_key(password, salt_size=16, load_existing_salt=False, save_salt=Tru
     return base64.urlsafe_b64encode(derived_key)
 
 
+def encrypt(filename, key):
+
+    f = Fernet(key)     # make Fernet object with the key
+    
+    with open(filename, "rb") as file:  # read the data of the file that'll be encrypted
+        file_data = file.read()
+
+    encrypted_data = f.encrypt(file_data)   # 'encrypt' method from Fernet
+
+    with open(filename, "wb") as file:      # take encrypted_data and and overwrite the original file
+        file.write(encrypted_data)

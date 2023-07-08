@@ -95,7 +95,7 @@ Usage instructions are at the beginning of each script. Some scripts may need to
 ## Screenshots
 
 ### Basic Ransomware:
-![Basic Ransomware](./files/basic_ransomware_ss.jpegs)
+![Basic Ransomware](./files/basic_ransomware_ss.jpeg)
 
 ### Change MAC address on a Linux machine:
 ![MAC Address Changed](./change_MAC_address/screenshot.jpeg)

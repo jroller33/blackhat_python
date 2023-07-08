@@ -93,6 +93,10 @@ python
 ## Usage
 Usage instructions are at the beginning of each script. Some scripts may need to be modified before running, depending on what you're trying to do.
 ## Screenshots
+
+### Basic Ransomware:
+![Basic Ransomware](./files/basic_ransomware_ss.jpegs)
+
 ### Change MAC address on a Linux machine:
 ![MAC Address Changed](./change_MAC_address/screenshot.jpeg)
 

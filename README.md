@@ -104,11 +104,11 @@ Usage instructions are at the beginning of each script. Some scripts may need to
 <br />
 
 ## Contribution
-You can contribute at https://github.com/jroller33/blackhat_python
+Clone the [repo](https://github.com/jroller33/blackhat_python) and submit a pull request to contribute!
 
 ## License
-This project is licensed under the MIT License. <br/>
-https://www.mit.edu/~amini/LICENSE.md
+This project is licensed under the [MIT License](https://github.com/jroller33/blackhat_python). <br/>
+X
 
 ## Contact
 GitHub: https://github.com/jroller33

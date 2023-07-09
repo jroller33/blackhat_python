@@ -151,3 +151,5 @@ class Keylogger:
 
         # blocks the current thread until 'CTRL-C' is pressed
         keyboard.wait()
+
+

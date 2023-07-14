@@ -109,12 +109,12 @@ Usage instructions are at the beginning of each script. Some scripts may need to
 <br />
 
 ## Contribution
-Fork the [repo](https://github.com/jroller33/blackhat_python) and submit a pull request to contribute!
+Contribute by forking the [repo](https://github.com/jroller33/blackhat_python) and submitting a pull request!
 
 ## License
 This project is licensed under the [MIT License](https://github.com/jroller33/blackhat_python). <br/>
-X
+
 
 ## Contact
-GitHub: https://github.com/jroller33
+[GitHub](https://github.com/jroller33)
 

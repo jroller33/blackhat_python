@@ -92,6 +92,7 @@ python
 
 ## Usage
 Usage instructions are at the beginning of each script. Some scripts may need to be modified before running, depending on what you're trying to do.
+
 ## Screenshots
 
 ### Basic Ransomware:

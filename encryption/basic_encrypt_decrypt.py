@@ -35,4 +35,14 @@ def load_key():
     return open("key.key", "rb").read()     # loads the key from the directory 'key.key'
 
 
+# given a filename (str) and key (bytes), this encrypts the file and writes it
+def encrypt(filename, key):
+    f = Fernet(key)
 
+    with open(filename, "rb") as file:
+        file_data = file.read()
+
+    encrypted_data = f.encrypt(file_data)
+
+    with open(filename, "wb") as file:
+        file.write(encrypted_data)

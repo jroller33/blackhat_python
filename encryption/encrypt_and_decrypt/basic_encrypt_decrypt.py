@@ -58,3 +58,14 @@ def decrypt(filename, key):
 
     with open(filename, "wb") as file:
         file.write(decrypted_data)
+
+
+write_key()
+
+key = load_key()
+
+file = "data.csv"
+
+encrypt(file, key)
+
+decrypt(file, key)
